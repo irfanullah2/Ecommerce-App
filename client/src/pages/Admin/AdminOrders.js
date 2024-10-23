@@ -15,17 +15,15 @@ const AdminOrders = () => {
     const [auth , setAuth] = useAuth();
    
    
-    // get all orders
-    const getOrders = async()=>{
-      try {
+   const getOrders = async () => {
+        try {
             // Full backend URL for the API request
             const { data } = await axios.get('https://ecommerce-app-server1.vercel.app/api/v1/auth/all-orders');
             setOrders(data);
         } catch (error) {
             console.log(error);
         }
-    
-    }
+    };
     
     useEffect(()=>{
       if(auth?.token) getOrders();
@@ -33,15 +31,15 @@ const AdminOrders = () => {
     
 
     // handle order Update
-    const handleChange =async(orderId , value)=>{
-try {
-    const {data} = await axios.put(`/api/v1/auth/order-status/${orderId}` , {status: value,})
-    getOrders();
-    
-} catch (error) {
-    console.log(error)
-}
-    }
+     const handleChange = async (orderId, value) => {
+        try {
+            // Full backend URL for updating the order status
+            const { data } = await axios.put(`https://ecommerce-app-server1.vercel.app/api/v1/auth/order-status/${orderId}`, { status: value });
+            getOrders();
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
   return (
     <Layout title={'All Orders Data'}>
