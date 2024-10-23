@@ -18,11 +18,13 @@ const AdminOrders = () => {
     // get all orders
     const getOrders = async()=>{
       try {
-        const {data} = await axios.get('/api/v1/auth/all-orders')
-        setOrders(data)
-      } catch (error) {
-        console.log(error)
-      }
+            // Full backend URL for the API request
+            const { data } = await axios.get('https://ecommerce-app-server1.vercel.app/api/v1/auth/all-orders');
+            setOrders(data);
+        } catch (error) {
+            console.log(error);
+        }
+    
     }
     
     useEffect(()=>{
